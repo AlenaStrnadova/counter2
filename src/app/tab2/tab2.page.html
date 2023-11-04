@@ -1,18 +1,12 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Your Tasks
+    <ion-title class="ion-text-center">
+      <h1>Your Tasks</h1>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Your Tasks</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <ion-item color="light">
     <ion-input type="text" placeholder="enter a new task..." [(ngModel)]="taskDescription">
     </ion-input>
