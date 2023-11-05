@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class QuoteApiService {
   constructor(private http: HttpClient) { }
 
   getTheQuote(): Observable<any> {
-    let url = ''
+    let url = ' https://api.quotable.io/random'
     return this.http.get(url)
   }
 

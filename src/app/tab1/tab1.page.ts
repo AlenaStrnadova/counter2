@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { QuoteApiService } from '../api/quote-api.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,15 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  quoteOutput$: Observable<any> = this.apiService.getTheQuote()
 
-}
+  constructor(private apiService: QuoteApiService) {}
+
+  quoteClicked() {
+    this.quoteOutput$ = this.apiService.getTheQuote()
+    };
+
+  }
+
+
+

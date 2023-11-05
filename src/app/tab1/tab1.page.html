@@ -6,7 +6,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Welcome</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Get inspired by a cool quote and deposit your tasks to free up your brain storage.
+    </ion-card-content>
+  </ion-card>
+
   
+  <ion-button (click)="quoteClicked()"
+  expand="block">Show a Cool Quote</ion-button>
+
+  <ion-card *ngIf="quoteOutput$ | async; let output">
+    <ion-card-content>
+      {{ output.responseData.quoteText }}
+    </ion-card-content>
+  </ion-card>
+
 
 </ion-content>
