@@ -11,7 +11,7 @@ export class QuoteApiService {
   constructor(private http: HttpClient) { }
 
   getTheQuote(): Observable<any> {
-    let url = ' https://api.quotable.io/random'
+    let url = 'https://api.quotable.io/random'
     return this.http.get(url)
   }
 

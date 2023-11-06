@@ -18,14 +18,20 @@
   </ion-card>
 
   
-  <ion-button (click)="quoteClicked()"
-  expand="block">Show a Cool Quote</ion-button>
+  
 
-  <ion-card *ngIf="quoteOutput$ | async; let output">
+  <ion-card *ngIf="quoteOutput$ | async; let output" color="light">
     <ion-card-content>
+      <blockquote>
       {{ output.content }}
+      <br><br>
+      <cite>{{ output.author }}</cite>
+      <hr>
+    </blockquote>
     </ion-card-content>
+    
   </ion-card>
-
+  <ion-button (click)="quoteClicked()"
+  color="medium" size="small" expand="block">New Quote</ion-button>
 
 </ion-content>
