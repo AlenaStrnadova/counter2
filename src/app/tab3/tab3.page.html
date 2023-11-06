@@ -26,7 +26,15 @@
     </ion-card-header>
   
     <ion-card-content>
-      ""
+      
+      <ion-list>
+        <ion-item  *ngFor="let history of storedData">
+          <ion-label>
+            {{ history }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
     </ion-card-content>
   </ion-card>
 
