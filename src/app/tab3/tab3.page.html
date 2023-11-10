@@ -9,7 +9,7 @@
 
 <ion-content class="ion-padding">
 
-  <ion-card>
+  <ion-card color="medium">
     <ion-card-header>
       <ion-card-title>About this App:</ion-card-title>
     </ion-card-header>
@@ -29,9 +29,11 @@
       
       <ion-list>
         <ion-item  *ngFor="let history of storedData">
-          <ion-label>
-            {{ history }}
-          </ion-label>
+          <ion-card color="warning">
+            <ion-card-content>
+              {{ history }}
+            </ion-card-content>
+          </ion-card>
         </ion-item>
       </ion-list>
 
