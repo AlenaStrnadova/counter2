@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { QuoteApiService } from '../api/quote-api.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HistoryServiceService } from '../storage/history-service.service';
 
 @Component({
@@ -9,39 +9,36 @@ import { HistoryServiceService } from '../storage/history-service.service';
   styleUrls: ['tab1.page.scss']
 })
 
-
 export class Tab1Page {
-
-  quoteOutput$: Observable<any> = this.apiService.getTheQuote()
-  historyArray: Array<string> = []
+  tempOutput$: Observable<any> = of();
+  historyArray: Array<string> = [];
+  @ViewChild('contentContainer', { static: true }) contentContainer!: ElementRef;
 
   constructor(
     private apiService: QuoteApiService,
     private storage: HistoryServiceService
-    ) {}
+  ) {}
 
-    async ionViewDidEnter () {
-      const storedData = await this.storage.get('history');
-      if (storedData) {
-        this.historyArray = JSON.parse(storedData);
-      }
+  async ionViewDidEnter() {
+    const storedData = await this.storage.get('history');
+    if (storedData) {
+      this.historyArray = JSON.parse(storedData);
     }
-  
-    quoteClicked() {
-    this.quoteOutput$ = this.apiService.getTheQuote()
-
-    this.quoteOutput$.subscribe(data => {
-      console.log(data.content)
-      let historyItem = data.content
-      this.historyArray.unshift(historyItem)
-      this.storage.set('history', JSON.stringify(this.historyArray))
-    });      
-
-
-    };
-
   }
 
+  quoteClicked() {
+    this.tempOutput$ = this.apiService.getTheQuote();
 
- 
-    
+    this.tempOutput$.subscribe(data => {
+      console.log(data.content);
+      let historyItem = data.content;
+      const newContent = data.content;
+
+      // Insert content into the <p> element using innerHTML
+      this.contentContainer.nativeElement.innerHTML = newContent;
+
+      this.historyArray.unshift(historyItem);
+      this.storage.set('history', JSON.stringify(this.historyArray));
+    });
+  }
+}
