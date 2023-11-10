@@ -30,11 +30,9 @@ export class Tab1Page {
     this.tempOutput$ = this.apiService.getTheQuote();
 
     this.tempOutput$.subscribe(data => {
-      console.log(data.content);
-      let historyItem = data.content;
-      const newContent = data.content;
-
-      // Insert content into the <p> element using innerHTML
+      console.log(data.value);
+      let historyItem = data.value;
+      const newContent = data.value;
       this.contentContainer.nativeElement.innerHTML = newContent;
 
       this.historyArray.unshift(historyItem);

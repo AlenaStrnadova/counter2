@@ -18,7 +18,7 @@ export class Tab3Page {
     const storedData = await this.storage.get('history');
     if (storedData) {
       this.storedData = JSON.parse(storedData);
-      console.log(this.storedData)
+      //console.log(this.storedData)
     }
   }
 
