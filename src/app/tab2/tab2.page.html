@@ -1,36 +1,35 @@
 <ion-header>
   <ion-toolbar color="medium">
     <ion-title class="ion-text-center">
-      <h1>Your Tasks</h1>
+      <h1>Chuck Translator</h1>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <ion-item color="light">
-    <ion-input type="text" placeholder="enter a new task..." [(ngModel)]="taskDescription">
-    </ion-input>
+<ion-content class="ion-padding">
 
-    <div class="item-note" item-end>
-      <ion-button color="success" (click)="addTask()">
-        <ion-icon name="add"></ion-icon>
-      </ion-button>
-    </div>
-  </ion-item>
-
-  <div padding>
-    <ion-list>
-      <ion-item *ngFor="let todo of taskList; let i=index" color="warning" class="ion-margin">
-        {{todo}}
-        <div class="item-note" slot="end">
-          <ion-button color="danger" clear (click)="deleteTask(i)">
-            <ion-icon name="trash"></ion-icon>
-          </ion-button>
-        </div>
-      </ion-item>
-    </ion-list>
-  </div>
-
-
+  <ion-card>
+    <ion-card-content>
+     <ion-input
+         type="text"
+         fill="solid"
+         label="Czech Text for translation"
+         labelPlacement="floating"
+         helperText="Test Chuck's knoledge of Czech..."
+         errorText="input some Czech..."
+         [(ngModel)]="userInput"
+         ></ion-input>
+    </ion-card-content>
+ 
+   </ion-card>
+ 
+   <ion-button (click)="translateClicked()"
+   expand="block" color="success" size="medium" class="ion-margin">Translate</ion-button>
+ 
+   <ion-card *ngIf="translationOutput$ | async; let output" color="warning">
+    <ion-card-content>
+      {{ output.responseData.translatedText }}
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

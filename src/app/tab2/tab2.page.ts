@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { TranslationAPIService } from '../api/translation-api.service';
+import { Observable } from 'rxjs';
+import { HistoryServiceService } from '../storage/history-service.service';
 
 @Component({
   selector: 'app-tab2',
@@ -9,21 +12,19 @@ import { Component } from '@angular/core';
 
 export class Tab2Page {
 
-  taskDescription: any = ""; // Entered Text
-  taskList: any[] = [] ; // Array to store tasks
+  userInput: String = ''
+  translationOutput$: Observable<any> = this.apiService.getTranslation("")
+  
 
-  constructor() { }
+  constructor( private apiService: TranslationAPIService ) { }
+
+  
  
-  addTask() {
-    if (this.taskDescription.length > 0) {
-      let task = this.taskDescription;
-      this.taskList.push(task);
-      this.taskDescription = "";
-    }
+  translateClicked() {
+    console.log(this.userInput)
+    this.translationOutput$ = this.apiService.getTranslation(this.userInput)
   }
 
-  deleteTask(index: any) {
-    this.taskList.splice(index, 1);
-  }
+
 }
 
